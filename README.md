@@ -1,0 +1,1 @@
+Dette repoet inneholder obligatoriske øvinger (øvingsoppgaver) for kurset INFT2503 – C++ for programmerere ved NTNU. Øvingene følger pensum og leveres som en del av kravene for å få gå opp til eksamen.
