@@ -33,6 +33,9 @@ public:
 
     /// Returns true if the given chess piece move is valid
     virtual bool valid_move(int from_x, int from_y, int to_x, int to_y) const = 0;
+
+    //
+    virtual std::string symbol() const = 0;
   };
 
   class King : public Piece {
@@ -49,6 +52,10 @@ public:
 
       return (dx <= 1 && dy <= 1 && !(dx == 0 && dy == 0));
     };
+
+    std::string symbol() const override {
+      return (color == Color::WHITE) ? "WKI" : "BKI";
+    }
   };
 
   class Knight : public Piece {
@@ -66,6 +73,9 @@ public:
       bool var1 = (dx == 1 && dy == 2);
       bool var2 = (dx == 2 && dy == 1);
       return (var1 || var2) && !(dx == 0 && dy == 0);
+    }
+    std::string symbol() const override {
+      return (color == Color::WHITE) ? "WKN" : "BKN";
     }
   };
 
@@ -121,24 +131,14 @@ public:
 };
 
 void printBoard(const ChessBoard &chessBoard) {
-  std::cout << "    a  b  c  d  e  f  g  h\n";
+  cout << "     a   b   c   d   e   f   g   h\n";
 
   for (int i = 7; i >= 0; --i) {
-    std::cout << (i + 1) << " ";
+    cout << (i + 1) << " ";
     for (int j = 0; j < 8; ++j) {
       const auto &piece = chessBoard.squares[j][i];
-      std::string cell;
-      if (piece) {
-        cell += (piece->color_string() == "white") ? 'W' : 'B';
-        const std::string t = piece->type();
-        if (t == "Knight")
-          cell += "KN";
-        else if (t == "King")
-          cell += "KI";
-      } else {
-        cell = ".";
-      }
-      cout << setw(3) << cell;
+      string cell = piece ? piece->symbol() : ".";
+      cout << std::setw(4) << cell;
     }
     cout << "\n";
   }
