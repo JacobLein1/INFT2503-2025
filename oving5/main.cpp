@@ -34,7 +34,7 @@ public:
     /// Returns true if the given chess piece move is valid
     virtual bool valid_move(int from_x, int from_y, int to_x, int to_y) const = 0;
 
-    //
+    // Method for shortening type and color for the piece
     virtual std::string symbol() const = 0;
   };
 
