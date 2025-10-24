@@ -1,1 +1,7 @@
-/build
+# IDE/OS
+.idea/
+.DS_Store
+
+# Arkiver
+*.zip
+*.tar.gz
